@@ -6,6 +6,7 @@ import s from './App.module.css';
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
 import Container from './Container/Container';
+import { save, load } from './localstorage';
 
 export class App extends Component {
   static propTypes = {
@@ -25,15 +26,16 @@ export class App extends Component {
   };
 
   componentDidMount() {
-    const storedContacts = JSON.parse(localStorage.getItem('contacts'));
+    // const storedContacts = JSON.parse(localStorage.getItem('contacts'));
+    const storedContacts = load('contacts');
 
     storedContacts && this.setState({ contacts: storedContacts });
   }
 
   componentDidUpdate(prevProps, prevState) {
     const { contacts } = this.state;
-    if (contacts !== prevState.contacts)
-      localStorage.setItem('contacts', JSON.stringify(contacts));
+    if (contacts !== prevState.contacts) save('contacts', contacts);
+    // localStorage.setItem('contacts', JSON.stringify(contacts));
   }
 
   addContact = (name, number) => {
