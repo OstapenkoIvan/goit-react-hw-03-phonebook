@@ -6,7 +6,7 @@ import s from './App.module.css';
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
 import Container from './Container/Container';
-import { save, load } from './localstorage';
+import { save, load } from './utils/localstorage';
 
 export class App extends Component {
   static propTypes = {
